@@ -1,0 +1,13 @@
+{
+  "name": "FinAPI",
+  "version": "1.0.0",
+  "description": "Fianancial App Server",
+  "main": "index.js",
+  "repository": "git@github.com:ecorrales1979/financial_app_server.git",
+  "author": "Eduardo Ernesto Corrales Reyna <ecorrales1979@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
