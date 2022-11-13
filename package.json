@@ -1,5 +1,5 @@
 {
-  "name": "FinAPI",
+  "name": "fin-api",
   "version": "1.0.0",
   "description": "Fianancial App Server",
   "main": "index.js",
@@ -7,13 +7,15 @@
   "author": "Eduardo Ernesto Corrales Reyna <ecorrales1979@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
   "dependencies": {
-    "express": "^4.18.2"
+    "fastify": "^4.9.2"
   },
   "devDependencies": {
-    "@types/express": "^4.17.14",
     "@types/node": "^18.11.9",
-    "ts-node-dev": "^2.0.0",
+    "tsx": "^3.12.1",
     "typescript": "^4.8.4"
   }
 }
