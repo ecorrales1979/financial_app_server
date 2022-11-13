@@ -1,11 +1,11 @@
 import { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
-import { CustomerModel } from "models/customer";
-
-const customers: CustomerModel[] = [];
+import { CustomerRepository } from "repositories/CustomerRepository";
 
 export async function accountRoutes(fastify: FastifyInstance) {
+  const customerRepository = new CustomerRepository();
+
   fastify.post("/account", async (request, response) => {
     const validationSchema = z.object({
       cpf: z.string(),
@@ -16,14 +16,7 @@ export async function accountRoutes(fastify: FastifyInstance) {
 
     const id = uuidv4();
 
-    const customer = {
-      id,
-      cpf,
-      name,
-      statements: [],
-    };
-
-    customers.push(customer);
+    const customer = customerRepository.createCustomer({ id, cpf, name });
 
     return response.send(customer);
   });
