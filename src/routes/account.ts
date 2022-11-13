@@ -1,8 +1,9 @@
 import { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
+import { CustomerModel } from "models/customer";
 
-const customers = [];
+const customers: CustomerModel[] = [];
 
 export async function accountRoutes(fastify: FastifyInstance) {
   fastify.post("/account", async (request, response) => {
