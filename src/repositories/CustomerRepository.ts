@@ -21,4 +21,10 @@ export class CustomerRepository {
 
     return customer;
   }
+
+  findCustomerByCpf(cpf: string) {
+    const customer = this.customers.find((item) => item.cpf === cpf);
+
+    return customer ?? null;
+  }
 }

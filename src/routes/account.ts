@@ -14,6 +14,12 @@ export async function accountRoutes(fastify: FastifyInstance) {
 
     const { cpf, name } = validationSchema.parse(request.body);
 
+    const customerAlreadyExists = customerRepository.findCustomerByCpf(cpf);
+
+    if (customerAlreadyExists) {
+      return response.status(422).send({ message: "Customer already exists" });
+    }
+
     const id = uuidv4();
 
     const customer = customerRepository.createCustomer({ id, cpf, name });
