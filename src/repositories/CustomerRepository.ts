@@ -9,7 +9,7 @@ interface AddCustomer {
 export class CustomerRepository {
   customers: CustomerModel[] = [];
 
-  createCustomer({ id, cpf, name }: AddCustomer) {
+  async createCustomer({ id, cpf, name }: AddCustomer) {
     const customer: CustomerModel = {
       id,
       cpf,
@@ -22,9 +22,11 @@ export class CustomerRepository {
     return customer;
   }
 
-  findCustomerByCpf(cpf: string) {
+  async findCustomerByCpf(cpf: string) {
     const customer = this.customers.find((item) => item.cpf === cpf);
 
     return customer ?? null;
   }
 }
+
+export const customerRepository = new CustomerRepository();
