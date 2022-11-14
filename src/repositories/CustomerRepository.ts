@@ -3,17 +3,19 @@ import { CustomerModel } from "models/customer";
 interface AddCustomer {
   id: string;
   cpf: string;
-  name: string;
+  firstname: string;
+  lastname: string;
 }
 
 export class CustomerRepository {
   customers: CustomerModel[] = [];
 
-  async createCustomer({ id, cpf, name }: AddCustomer) {
+  async createCustomer({ id, cpf, firstname, lastname }: AddCustomer) {
     const customer: CustomerModel = {
       id,
       cpf,
-      name,
+      firstname,
+      lastname,
       statements: [],
     };
 

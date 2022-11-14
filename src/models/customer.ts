@@ -1,6 +1,7 @@
 export interface CustomerModel {
   id: string;
   cpf: string;
-  name: string;
+  firstname: string;
+  lastname: string;
   statements: unknown[];
 }

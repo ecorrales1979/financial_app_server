@@ -8,10 +8,11 @@ export class CustomerController {
   async createCustomer(request: Request, response: Response) {
     const validationSchema = z.object({
       cpf: z.string(),
-      name: z.string(),
+      firstname: z.string(),
+      lastname: z.string(),
     });
 
-    const { cpf, name } = validationSchema.parse(request.body);
+    const { cpf, firstname, lastname } = validationSchema.parse(request.body);
 
     const customerAlreadyExists = await customerRepository.findCustomerByCpf(
       cpf
@@ -24,7 +25,8 @@ export class CustomerController {
     const customer = await customerRepository.createCustomer({
       id: uuidv4(),
       cpf,
-      name,
+      firstname,
+      lastname,
     });
 
     return response.send(customer);
