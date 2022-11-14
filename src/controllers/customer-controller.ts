@@ -2,7 +2,7 @@ import { FastifyRequest as Request, FastifyReply as Response } from "fastify";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
 
-import { customerRepository } from "repositories/CustomerRepository";
+import { customerRepository } from "repositories/customer-repository";
 
 export class CustomerController {
   async createCustomer(request: Request, response: Response) {
