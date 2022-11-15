@@ -1,8 +1,7 @@
 import { FastifyRequest as Request, FastifyReply as Response } from "fastify";
 import { z } from "zod";
-import { v4 as uuidv4 } from "uuid";
 
-import { customerRepository } from "repositories/customer-repository";
+import { CreateCustomerService } from "services/create-customer-service";
 
 export class CustomerController {
   async createCustomer(request: Request, response: Response) {
@@ -14,16 +13,9 @@ export class CustomerController {
 
     const { cpf, firstname, lastname } = validationSchema.parse(request.body);
 
-    const customerAlreadyExists = await customerRepository.findCustomerByCpf(
-      cpf
-    );
+    const createCustomerService = new CreateCustomerService();
 
-    if (customerAlreadyExists) {
-      return response.status(422).send({ message: "Customer already exists" });
-    }
-
-    const customer = await customerRepository.createCustomer({
-      id: uuidv4(),
+    const customer = await createCustomerService.run({
       cpf,
       firstname,
       lastname,
