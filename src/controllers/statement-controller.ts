@@ -13,7 +13,7 @@ export class StatementController {
     const customer = await customerRepository.findCustomerByCpf(cpf);
 
     if (!customer) {
-      return response.status(404).send({ message: "Customer already exists" });
+      return response.status(404).send({ message: "Customer not found" });
     }
 
     return response.send(customer.statements);
