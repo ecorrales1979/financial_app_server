@@ -2,6 +2,7 @@ import { FastifyReply, FastifyRequest, HookHandlerDoneFunction } from "fastify";
 import { z } from "zod";
 
 import { customerRepository } from "repositories/customer-repository";
+import { AppError } from "utils/app-error";
 
 export async function VerifyCustomerExistsMiddleware(
   request: FastifyRequest,
@@ -17,7 +18,7 @@ export async function VerifyCustomerExistsMiddleware(
   const customer = await customerRepository.findCustomerByCpf(cpf);
 
   if (!customer) {
-    return response.status(404).send({ message: "Customer not found" });
+    throw new AppError("Customer not found", 404);
   }
 
   next();
